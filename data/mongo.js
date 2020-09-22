@@ -5,14 +5,14 @@ let client;
 
 function connect(locals) {
 
-    const uri = `mongodb+srv://dbArto:<Giggity123!@>@cluster0.ma9ut.mongodb.net/<crudProjectGames>?retryWrites=true&w=majority`
+    const uri = process.env.DB_URL
 
     client = new MongoClient(uri,{useUnifiedTopology: true})
 
     return client.connect()
     .then((connection) => {
         locals.collectionVG = connection.db('crudProjectGames').collection('video-games')
-        
+
     })
     .catch(err => {
         console.log(err)
@@ -48,7 +48,6 @@ function replaceOne(info) {
 function changeOne(info) {
     
     return info.collection.findOneAndUpdate({$set: info.query},info.doc)
-//    return info.collection.find1(info.query)
 }
 
 function deleteOne(info) {
