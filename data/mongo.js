@@ -35,9 +35,14 @@ function readOne(info) {
     return info.collection.findOne(info.query)
 }
 
+function readOneById(info) {
+    
+    return info.collection.findOne({ _id: ObjectID(info.id)})
+}
+
 function createOne(info) {
     
-    return info.collection.inertOne(info.doc)
+    return info.collection.insertOne(info.doc)
 }
 
 function replaceOne(info) {
@@ -59,6 +64,7 @@ module.exports.connect = connect
 module.exports.close = close
 module.exports.readAll = readAll
 module.exports.readOne = readOne
+module.exports.readOneById = readOneById
 module.exports.createOne = createOne
 module.exports.replaceOne = replaceOne
 module.exports.changeOne = changeOne

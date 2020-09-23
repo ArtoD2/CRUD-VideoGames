@@ -18,4 +18,22 @@ router.get('/', function(req, res, next) {
     })
 });
 
+
+router.post('/', function(req,res,next){
+    const info = {
+        doc: req.body,
+        collection: req.app.locals.collectionVG
+    }
+    db.createOne(info)
+    .then(() => {
+        res.json(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+})
+
+//router.get('/:key/:value', function(req,res,next){
+
 module.exports = router;
+//})
