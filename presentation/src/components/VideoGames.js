@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import VideoGame from "./VideoGame";
 import CreateForm from "./CreateForm"
 
+// grabs the environment variable for the API URL from the process
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default class extends Component {
@@ -23,7 +24,7 @@ export default class extends Component {
             <div>
                 <h1>Video Games</h1>
                 <h2>Enter your favorite game information below:</h2>
-                <CreateForm/>
+                <CreateForm refresh={this.getVideoGames}/>
                 <h2>Browse games we have on file:</h2>
                 {displayGames}
             </div>

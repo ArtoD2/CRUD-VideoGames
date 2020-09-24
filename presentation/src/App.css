@@ -43,7 +43,18 @@ form {
   margin: 0 20vw;
 }
 
-.form2 {
-  display: flex;
-  flex-direction: column;
+button {
+  background-color: blue;
+  color: white;
+  width: 40%;
+  align-self: center;
 }
+
+label {
+  margin-right: 2vw;
+}
+
+.del-console {
+  background-color: crimson;
+}
+
