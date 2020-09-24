@@ -54,7 +54,10 @@ label {
   margin-right: 2vw;
 }
 
-.del-console {
+.del-btn {
   background-color: crimson;
+  color: black;
+  width: 4vw;
+  margin: 5px;
 }
 

@@ -38,20 +38,29 @@ class CreateForm extends React.Component {
         this.setState({ [target.name]: value});
     }
     handleSubmit = (event) => {
+        console.log(this.state)
         event.preventDefault();
         fetch(`${API_URL}/video-games`, {
             method: "POST",
-            header: {
+            headers: {
                 "Content-Type" : "application/json"
             },
             body: JSON.stringify(this.state)
         }).then(this.props.refresh)
-            .then(() => this.setState())
+            .then(() => this.setState({
+                name: "",
+                type: "",
+                genre: "",
+                release: "",
+                players: 0,
+                consoles: [ "" ],
+                owned: false
+                }))
     }
     render () {
         const displayConsoles = this.state.consoles.map((console, index) => {
             return (
-                <div>
+                <div key={index}>
                     <select value={this.state.consoles[index]}
                             onChange={({target}) => this.handleConsoleChange(target.value, index)}>
                         <option value="">Choose a Console(s)</option>
@@ -74,29 +83,29 @@ class CreateForm extends React.Component {
                         <option value="Atari 5200">Atari 5200</option>
                         <option value="Atari 7800">Atari 7800</option>
                     </select> 
-                    <input class="del-console" type="button" value="X"
+                    <input class="del-btn" type="button" value="X"
                     onClick = {() => this.removeConsole(index)}/>
                 </div>
             )
         })
         return (
-            <form id="create">
+            <form id="create" onSubmit={this.handleSubmit}>
                 <input name="name" placeholder="Game Name" type="text" value={this.state.name} onChange={this.handleChange}/>
                 <input name="type" placeholder="Game Type" type="text" value={this.state.type} onChange={this.handleChange}/>
                 <input name="genre" placeholder="Game Genre" type="text" value={this.state.genre} onChange={this.handleChange}/>
                 <div id="release date input line">
-                    <label for="release">Release Date: </label>
+                    <label htmlFor="release">Release Date: </label>
                     <input name="release" type="date" value={this.state.release} onChange={this.handleChange}/>
                 </div>
                 <div id="player count input line">
-                    <label for="players">Number of Players: </label>
+                    <label htmlFor="players">Number of Players: </label>
                     <input name="players" type="number" value={this.state.players} onChange={this.handleChange}/>
                 </div>
                 {displayConsoles}
                 <button type="button" value="Add Console"
                 onClick={this.addConsole}>Add Console(s)</button>
                 <div id="posession input line">
-                    <label for="owned">Do you own it?</label>
+                    <label htmlFor="owned">Do you own it?</label>
                     <input name="owned" placeholder="Do you own it?" type="checkbox" onChange={this.handleChange}/>
                 </div>
                 <button>Add Game</button>
