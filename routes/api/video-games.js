@@ -47,6 +47,24 @@ router.delete('/:id', function(req,res,next){
     })
 })
 
+router.put('/:id', function(req,res,next){
+    const info = {
+        id: req.params.id,
+        doc: req.body,
+        collection: req.app.locals.collectionVG
+    }
+    db.replaceOne(info)
+    .then(() => {
+        res.json({msg: `updated ${info.id}`});
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+})
+
+
+
+// ignore this
 //router.get('/:key/:value', function(req,res,next){
 
 module.exports = router;

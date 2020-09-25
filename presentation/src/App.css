@@ -61,3 +61,10 @@ label {
   margin: 5px;
 }
 
+.edit {
+  background-color: green;
+  color: cornsilk;
+  width: 60px;
+  margin-left: 2vw
+}
+
